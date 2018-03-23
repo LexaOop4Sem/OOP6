@@ -46,16 +46,19 @@ void big::set_num(std::string &input)
 
 
 
-void big::get_num() {
+bool big::get_num() {
 
-	if (*znak == 0) cout << "+";
+	if (((*array)[0] == 0) && (*znak == 1)) {
+	return 1;
+	}
+	else if (*znak == 0) cout << "+";
 	else cout << "-";
 
 	for (int i = 0; i < (*array).size(); i++) {
-				cout << (*array)[i];
-			}
-
-
+		cout << (*array)[i];
+	}
+	return 0;
+	
 }
 
 
@@ -239,6 +242,14 @@ big big::diff(big &num1, big &num2, bool &PlaseOfCall) {
 
 big big::Prepair_for_Mult(big &num1, big &num2) {
 	vector<int> result;
+	if (((*num1.array)[0] == 0) || ((*num2.array)[0] == 0)) {
+		result.insert(result.begin(), 0);
+		bool znk = 0;
+		big out(result, znk);
+		return out;
+	}
+
+	
 	int biggest;
 	NormalLenght((*num1.array), (*num2.array));
 	FindBiggest((*num1.array), (*num2.array), biggest);
@@ -320,12 +331,23 @@ void big::Multiplication(std::vector<int> big, std::vector<int> small, std::vect
 
 big big::Division(big &num1, big &num2,bool &CallAsMod) {
 	//условно считаем что первое число больше второго
+	vector<int> answer;
 	bool PlaceOfCall = 0;
 	vector<int> one;
+	if ((*num2.array)[0] == 0){
+		cout << "division error" << endl;
+		answer.insert(answer.begin(), 0);
+		bool znk = 1;
+		big out(answer, znk);
+		return out;
+
+}
+
+
 		int biggest = 0;
 		bool znk = 0;
 		one.insert(one.end(), 1);
-		vector<int> answer;
+		
 		big ones(one, znk);
 		answer.insert(answer.end(), 1);
 		big ans(answer, znk);
@@ -371,9 +393,11 @@ big big::Division(big &num1, big &num2,bool &CallAsMod) {
 			{
 				*result.znak = 0;
 			}
-			else *result.znak = 1;
-
-			
+			else *result.znak = 1; {
+				if ((*result.array)[0] == 0) {
+					*result.znak = 1;
+				}
+			}
 			return result;
 		}
 		// MOD

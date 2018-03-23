@@ -62,7 +62,7 @@ string check() {
 }
 
 void Newnums() {
-
+	cout << endl << "Enter nums"<<endl;
 	string input;
 
 	cout << "enter 1" << endl;
@@ -111,10 +111,33 @@ void Newnums() {
 	case 4: {
 		bool CallAsMod = 0;
 		big out = num1.Division(num1, num2, CallAsMod);
-		out.get_num();
-		SubMenu(out);
-		break;
-	}
+		bool ErrFlag = out.get_num();
+		if (ErrFlag) {
+			int Choise1;
+			cout << endl << "Choose Action\n"
+				<< "(1)Continue\n"
+				<< "(2)Exit\n";
+			cin >> Choise1;
+			switch (Choise1)
+			{
+			case 1: {
+				Newnums();
+				break;}
+			case 2: {
+				exit(0);
+			}
+					SubMenu(out);
+					break;
+			default: {
+				cout << "incorrect expression\n"
+					<< "try again\n";
+			}
+			}
+		}
+		else {
+			SubMenu(out);
+		}
+		}
 	case 5: {
 		bool CallAsMod = 1;
 		big out = num1.Division(num1, num2, CallAsMod);
@@ -192,9 +215,6 @@ void Continue(big &num1) {
 			<< "try again\n";
 	}
 	}
-
-
-
 }
 
 void SubMenu(big num1) {

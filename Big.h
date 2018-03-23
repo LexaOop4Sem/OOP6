@@ -12,7 +12,7 @@ public:
 	big(std::string &input);
 void NormalLenght(std::vector<int> &array1, std::vector<int> &array2);
 void set_num(std::string &input);
-void get_num();
+bool get_num();
 big summ(big &num1, big &num2);
 big diff(big &num1, big &num2, bool &PlaseOfCall);
 big  Prepair_for_Mult(big &num1, big &num2);
