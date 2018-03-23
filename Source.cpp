@@ -19,6 +19,8 @@
 
 using namespace std;
 
+void SubMenu(big num1);
+
 string check() {
 	string str;
 	int  err = 1;
@@ -32,7 +34,7 @@ string check() {
 
 
 	cin >> str;
-	cout << (int)str[0] << endl;
+	//cout << (int)str[0] << endl;
 
 	while (!((str[0]=='+')|| (str[0] == '-')|| ((int)(str[0]>48))  || ((int)(str[0]<56))))
 	{
@@ -59,118 +61,178 @@ string check() {
 	return str;
 }
 
+void Newnums() {
 
-void menu() {
-	
-	//big out;
 	string input;
 
 	cout << "enter 1" << endl;
- input= check();
+	input = check();
 	big num1(input);
-
-
-	//num1.set_num(input);
-	cout << endl << "-----------num1--------" << endl;
-	num1.get_num();
-
 
 	input.clear();
 	cout << endl << "enter 2" << endl;
 	cin >> input;
 	big num2(input);
 
-	//num2.set_num(input);
-	cout << endl << "-----------num2--------" << endl;
-	num2.get_num();
 	cout << endl;
-	////////////////---------------------------summ
-	/*num1.summ(num1, num2);
-	big out= num1.summ(num1, num2);
-	out.get_num();*/
+	int Choise;
+
+	cout << endl << "Choose Action\n"
+		<< "(1)Summ\n"
+		<< "(2)Diff\n"
+		<< "(3)Mult\n"
+		<< "(4)Div\n"
+		<< "(5)Mod\n"
+		<< "(6)EXIT\n";
+
+	cin >> Choise;
+
+	switch (Choise)
+	{
+	case 1: {
+		big out = num1.summ(num1, num2);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 2: {
+		bool PlaseOfCall = 1;
+		big out = num1.diff(num1, num2, PlaseOfCall);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 3: {
+		big out = num1.Prepair_for_Mult(num1, num2);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 4: {
+		bool CallAsMod = 0;
+		big out = num1.Division(num1, num2, CallAsMod);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 5: {
+		bool CallAsMod = 1;
+		big out = num1.Division(num1, num2, CallAsMod);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 6: {
+		exit(0);
+	}
+	default: {
+		cout << "incorrect expression\n"
+			<< "try again\n";
+	}
+	}
+
+}
+
+void Continue(big &num1) {
+	string input;
+	cout << "enter second num" << endl;
+	input = check();
+	big num2(input);
+	int Choise;
+	cout << endl << "Choose Action\n"
+		<< "(1)Summ\n"
+		<< "(2)Diff\n"
+		<< "(3)Mult\n"
+		<< "(4)Div\n"
+		<< "(5)Mod\n"
+		<< "(6)EXIT\n";
+
+	cin >> Choise;
+
+	switch (Choise)
+	{
+	case 1: {
+		big out = num1.summ(num1, num2);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 2: {
+		bool PlaseOfCall = 1;
+		big out = num1.diff(num1, num2, PlaseOfCall);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 3: {
+		big out = num1.Prepair_for_Mult(num1, num2);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 4: {
+		bool CallAsMod = 0;
+		big out = num1.Division(num1, num2, CallAsMod);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 5: {
+		bool CallAsMod = 1;
+		big out = num1.Division(num1, num2, CallAsMod);
+		out.get_num();
+		SubMenu(out);
+		break;
+	}
+	case 6: {
+		exit(0);
+	}
+	default: {
+		cout << "incorrect expression\n"
+			<< "try again\n";
+	}
+	}
 
 
 
+}
 
-	//разность
-	/*big out = num1.diff(num1, num2, PlaseOfCall);
-	out.get_num();*/
-
-	//умножение
-	/*big out = num1.Prepair_for_Mult(num1, num2);
-	out.get_num();
-*/
-
-//деление
-/*bool CallAsMod = 0;
-big out = num1.Division(num1, num2,CallAsMod);
-out.get_num();*/
-
-
-/////mod
-	/*bool CallAsMod = 1;
-	big out = num1.Division(num1, num2, CallAsMod);
-	out.get_num();*/
-
-
+void SubMenu(big num1) {
 
 	int Choise;
-	//while (1) {
-		cout << "Choose Action\n"
-			<< "(1)Summ\n"
-			<< "(2)Diff\n"
-			<< "(3)Mult\n"
-			<< "(4)Div\n"
-			<< "(5)Mod\n"
-			<< "(6)EXIT\n";
+	cout << endl << "Next action?\n"
+		<< "(1)Continue with this num\n"
+		<< "(2)Enter new nums\n"
+		<< "(3)EXIT\n";
 
-		cin >> Choise;
+	cin >> Choise;
 
-		switch (Choise)
-		{
-		case 1: {
-			big out = num1.summ(num1, num2);
-			out.get_num();
-			break;
-		}
-		case 2: {
-			bool PlaseOfCall = 1;
-			big out = num1.diff(num1, num2, PlaseOfCall);
-			out.get_num();
-			break;
-		}
-		case 3: {
-			big out = num1.Prepair_for_Mult(num1, num2);
-			out.get_num();
-			break;
-		}
-		case 4: {
-			bool CallAsMod = 0;
-			big out = num1.Division(num1, num2, CallAsMod);
-			out.get_num();
-			break;
-		}
-		case 5: {
-			bool CallAsMod = 1;
-			big out = num1.Division(num1, num2, CallAsMod);
-			out.get_num();
-			break;
-		}
-		case 6: {
-			exit(0);
-		}
-		default: {
-			cout << "incorrect expression\n"
-				<< "try again\n";
-		}
-		}
-//	}
+	switch (Choise)
+	{
+	case 1: {
+		Continue(num1);
+		break;
+	}
+	case 2: {
+		Newnums();
+		break;
+	}
+	case 3: {
+		exit(0);
+	}
+	default: {
+		cout << "incorrect expression\n"
+			<< "try again\n";
+	}
+	}
 }
 
 
-int main() {
 
-	menu();
+
+int main() {
+	Newnums();
+
 	// Для обнаружения утечек памяти
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);

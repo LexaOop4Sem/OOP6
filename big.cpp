@@ -190,7 +190,7 @@ big big::diff(big &num1, big &num2, bool &PlaseOfCall) {
 				}
 				result.insert(result.begin(), curr);
 			}
-			cout << endl << "+" << endl;
+		//	cout << endl << "+" << endl;
 
 
 			while (result[0] == 0) {
@@ -216,7 +216,7 @@ big big::diff(big &num1, big &num2, bool &PlaseOfCall) {
 			}
 
 
-			cout << endl << "-" << endl;
+		//	cout << endl << "-" << endl;
 
 
 			while (result[0] == 0) {
@@ -233,23 +233,9 @@ big big::diff(big &num1, big &num2, bool &PlaseOfCall) {
 			big out(result, *num2.znak);
 		}
 		
-
-		/*cout << endl << "--------------result----------------------------" << endl;
-
-		for (int i = 0; i < result.size(); i++) {
-			cout << result[i];
-		}*/
-
-
-
-		////hot fix znak
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 }
  
-
-
-
 
 big big::Prepair_for_Mult(big &num1, big &num2) {
 	vector<int> result;
@@ -281,7 +267,7 @@ big big::Prepair_for_Mult(big &num1, big &num2) {
 	}
 	//TODO think about return znak           CLOSED
 	bool znk;
-	if (((*num1.znak)==0)&&(*num2.znak)==0) {
+	if ((((*num1.znak)==0)&&((*num2.znak)==0))|| (((*num1.znak) == 1) && ((*num2.znak) == 1))) {
 		znk = 0;
 	}
 	else {
