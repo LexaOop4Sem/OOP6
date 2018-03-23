@@ -356,11 +356,19 @@ big big::Division(big &num1, big &num2,bool &CallAsMod) {
 		if ((*num2.znak) == 1) znk = 1;
 
 
-		if ((CallAsMod == 1) && ((*num2.array)[0]) == 1) {
-			vector<int> nul;
-			nul.insert(nul.end(), 0);
-			big null(nul, znk);
-			return null;
+		if ((CallAsMod == 1)) {
+			if ((*num1.array)[0] == 0) {
+				*result.znak = 0;
+				(*result.array).clear();
+				(*result.array).insert((*result.array).begin(), 0);
+				return result;
+			}
+			if (((*num2.array)[0]) == 1) {
+				vector<int> nul;
+				nul.insert(nul.end(), 0);
+				big null(nul, znk);
+				return null;
+			}
 		}
 
 
@@ -388,6 +396,7 @@ big big::Division(big &num1, big &num2,bool &CallAsMod) {
 	
 		}
 		if (CallAsMod == 0) {
+			
 			result = diff(ans, ones, PlaceOfCall);
 			if ((((*num1.znak) == 0) && ((*num2.znak) == 0)) || (((*num1.znak) == 1) && ((*num2.znak) == 1)))
 			{
